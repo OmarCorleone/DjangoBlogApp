@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">Zıbzıblar Blog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'about' %}">Hakkımızda</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'memory:memories' %}">Anılar</a>
+        </li>
+        {% endif %}
+
+
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link  " aria-current="page" >Hoş geldiniz {{request.user.username}}</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'user:logout' %}">Çıkış Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'memory:dashboard' %}">Kontrol Paneli</a>
+
+        </li>
+
+
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'user:login' %}">Giriş Yap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="{% url 'user:register' %}">Kayıt Ol</a>
+        </li>
+        {% endif %}
+
+
+
+
+
+      </ul>
+</nav>
+
+

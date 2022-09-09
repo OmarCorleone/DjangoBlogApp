@@ -1,0 +1,47 @@
+
+<style>
+    body{
+
+
+        background-image: url(/ourphotos/DEVRIM.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        height:1000px;
+
+
+    }
+    .class1_ofs{
+        opacity:0.6;
+    }
+
+
+</style>
+
+{% extends "layout.html" %}
+
+
+    {% block body %}
+    <div class="class1_ofs">
+    <div  class="container-fluid text-sm-center p-5 bg-light "
+        <h3>Zıbzıblar Bloga hoşgeldiniz</h3>
+
+        {% if request.user.is_authenticated %}
+        <p>Bu blogda anılarımızı paylaşıcaz </p><br>
+        {% else %}
+        <p>Bu blogda anılarımızı paylaşıcaz </p><br>
+        <p>Anıları görmek için kayıt olup giriş yapın. </p>
+
+        {% endif %}
+
+    </div>
+    </div>
+
+
+
+
+    {% endblock body %}
+
+
+

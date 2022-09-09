@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+
+        <h2>Anılar</h2>
+<hr>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <form>
+                {% csrf_token %}
+            <input type="text" name="keyword"  placeholder="Anı Ara" class="input-sm Anıara">
+            <button type="submit" class="btn btn-outline-secondary">Ara</button>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+
+{% if memories %}
+{% for memory in  memories %}
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+    <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <a href="{% url 'memory:detail' memory.id %}"><h4 class="fw-bolder mb-1">{{memory.title}}</h4></a>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">{{memory.created_date}}</div>
+                <!-- Post categories-->
+
+                <p class="lead">
+                 {{memory.author.username}}, tarafından yayınlandı
+
+                </p>
+            </header>
+
+
+            <!-- Preview image figure-->
+            {% if memory.memory_image %}
+            <a href="{% url 'memory:detail' memory.id %}"><img class="img-fluid rounded" src="{{memory.memory_image.url}}" alt="..." /></a>
+            {% endif %}
+
+            <!-- Post content-->
+            <section class="mb-5">
+                {{memory.content|safe|truncatewords:20}}
+                <a style="float: right;" href="{% url 'memory:detail' memory.id %}" class ="btn btn-outline-secondary">Devamını oku</a>
+            </section>
+            <hr>
+
+        </article>
+        <!-- Comments section-->
+
+    </div>
+    <!-- Side widgets-->
+
+        <!-- Side widget-->
+
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+
+            <div class="alert alert-danger">Anı bulunamadı.</div>
+        </div>
+
+    </div>
+</div>
+
+{% endif %}
+{% endblock body %}
